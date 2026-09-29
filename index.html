@@ -2,20 +2,33 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Şirket IBAN Bilgileri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kutayalp Yapı - Şirket IBAN Bilgileri</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; }
-        h2 { color: #333; margin-bottom: 5px; }
-        .subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
-        .card { background: #f9fbfb; border: 1px solid #eef2f2; border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; position: relative; }
-        .bank-name { font-weight: bold; color: #007bff; margin-bottom: 8px; font-size: 16px; }
-        .info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; background: #fff; padding: 8px 12px; border-radius: 8px; border: 1px solid #eef0f0; }
-        .info-text { font-size: 13px; color: #444; word-break: break-all; max-width: 75%; }
-        .btn-copy { background: #007bff; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 6px; transition: 0.2s; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 15px; display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .container { background: white; padding: 20px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 440px; text-align: center; margin-top: 10px; }
+        
+        /* Logo Alanı */
+        .logo-container { margin-bottom: 15px; display: flex; justify-content: center; align-items: center; }
+        .company-logo { max-width: 150px; max-height: 90px; object-fit: contain; }
+        
+        h2 { color: #333; margin: 10px 0 5px 0; font-size: 16px; font-weight: 700; line-height: 1.4; }
+        .subtitle { color: #666; font-size: 13px; margin-bottom: 20px; line-height: 1.4; }
+        .card { background: #f9fbfb; border: 1px solid #eef2f2; border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; }
+        .bank-name { font-weight: bold; color: #007bff; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; }
+        
+        /* Mobil Esnek Satır Düzeni */
+        .info-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #fff; padding: 10px 12px; border-radius: 8px; border: 1px solid #eef0f0; }
+        .info-text { font-size: 13px; color: #444; word-break: break-all; flex: 1; min-width: 200px; font-family: monospace; font-weight: 600; }
+        
+        /* Sağdaki Kopyala Butonu */
+        .btn-copy { background: #007bff; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; min-height: 38px; display: inline-flex; align-items: center; justify-content: center; }
         .btn-copy:hover { background: #0056b3; }
-        .toast { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 20px; font-size: 14px; z-index: 1000; }
+        .btn-copy:active { transform: scale(0.97); }
+        
+        /* Toast Bildirim Kutusu */
+        .toast { display: none; position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #222; color: white; padding: 12px 24px; border-radius: 30px; font-size: 14px; z-index: 1000; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-weight: 600; }
     </style>
 </head>
 <body>
@@ -56,7 +69,7 @@
         </div>
     </div>
     
-            <!-- 3. Banka Kartı -->
+    <!-- 3. Banka Kartı -->
     <div class="card">
         <div class="bank-name">KUVEYT TÜRK</div>
         <div class="info-row">
@@ -69,13 +82,13 @@
     <div class="card">
         <div class="bank-name">YAPI KREDİ</div>
         <div class="info-row">
-            <span class="info-text" id="iban1">TR240006701000000027315642</span>
+            <span class="info-text" id="iban4">TR240006701000000027315642</span>
             <button class="btn-copy" onclick="kopyala('iban4')">Kopyala</button>
         </div>
     </div>
 </div>
 
-<div class="toast" id="toast">Kopyalandı!</div>
+<div class="toast" id="toast">Panoya Kopyalandı! ✓</div>
 
 <script>
 function kopyala(elementId) {
@@ -84,6 +97,8 @@ function kopyala(elementId) {
         const toast = document.getElementById('toast');
         toast.style.display = 'block';
         setTimeout(() => { toast.style.display = 'none'; }, 1500);
+    }).catch(err => {
+        alert("Kopyalanamadı, lütfen metne basılı tutarak kopyalayın.");
     });
 }
 </script>
