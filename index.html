@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Şirket IBAN Bilgileri</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #333; margin-bottom: 5px; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 25px; }
+        .card { background: #f9fbfb; border: 1px solid #eef2f2; border-radius: 12px; padding: 15px; margin-bottom: 15px; text-align: left; position: relative; }
+        .bank-name { font-weight: bold; color: #007bff; margin-bottom: 8px; font-size: 16px; }
+        .info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; background: #fff; padding: 8px 12px; border-radius: 8px; border: 1px solid #eef0f0; }
+        .info-text { font-size: 13px; color: #444; word-break: break-all; max-width: 75%; }
+        .btn-copy { background: #007bff; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 6px; transition: 0.2s; }
+        .btn-copy:hover { background: #0056b3; }
+        .toast { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 10px 20px; border-radius: 20px; font-size: 14px; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Şirket Logosu / Adı</h2>
+    <p class="subtitle">Kopyalamak istediğiniz bilginin yanındaki butona tıklayınız.</p>
+
+    <!-- Şirket Ünvanı Kartı -->
+    <div class="card">
+        <div class="bank-name">Hesap Sahibi / Ünvan</div>
+        <div class="info-row">
+            <span class="info-text" id="sirket-ismi">XYZ TEKSTİL SANAYİ VE TİCARET A.Ş.</span>
+            <button class="btn-copy" onclick="kopyala('sirket-ismi')">Kopyala</button>
+        </div>
+    </div>
+
+    <!-- 1. Banka Kartı -->
+    <div class="card">
+        <div class="bank-name">Garanti BBVA</div>
+        <div class="info-row">
+            <span class="info-text" id="iban1">TR001122334455667788990011</span>
+            <button class="btn-copy" onclick="kopyala('iban1')">Kopyala</button>
+        </div>
+    </div>
+
+    <!-- 2. Banka Kartı -->
+    <div class="card">
+        <div class="bank-name">Akbank</div>
+        <div class="info-row">
+            <span class="info-text" id="iban2">TR998877665544332211009988</span>
+            <button class="btn-copy" onclick="kopyala('iban2')">Kopyala</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast">Kopyalandı!</div>
+
+<script>
+function kopyala(elementId) {
+    const metin = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(metin).then(() => {
+        const toast = document.getElementById('toast');
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 1500);
+    });
+}
+</script>
+
+</body>
+</html>
